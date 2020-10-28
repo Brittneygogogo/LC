@@ -17,7 +17,7 @@ def merge(nums1, m, nums2, n):
         if nums1[p1] < nums2[p2]:
             nums1[p] = nums2[p2]
             p2 -= 1
-z        else:
+        else:
             nums1[p] = nums1[p1]
             p1 -= 1
         p -= 1

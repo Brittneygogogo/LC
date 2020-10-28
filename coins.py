@@ -16,6 +16,9 @@ int coinChange(int[] coins, int amount);
 每次遍历0-11的金钱数，每个金钱数再分别遍历每个coin，比较当前的coin数和+1哪个小，看能凑出来的最小coin数
 
 """
+#自底向上
+#dp 数组的定义：当目标金额为 i 时，至少需要 dp[i] 枚硬币凑出
+
 def coinChange(coins, amount):
     # dp = len(amount)+1
     dp = list(range(12))
@@ -29,8 +32,26 @@ def coinChange(coins, amount):
     # if dp[amount] == amount+1:
     print(dp[amount])
 
-    # return -1
-    # return dp[amount]
+    return -1
+    return dp[amount]
+
+#自顶向下，暴力遍历，dp(n) 的定义：输入一个目标金额 n，返回凑出目标金额 n 的最少硬币数量。
+# 基础版，可加memo
+# def coinChange1(coins, amount):
+#     def dp(n):
+#         if n == 0: return 0
+#         if n < 0: return -1
+#
+#         res = float('INF')
+#         for coin in coins:
+#             subproblem = dp(n - coin)
+#             # 子问题无解，跳过
+#             if subproblem == -1: continue
+#             res = min(res, 1 + subproblem)
+#         return res if res != float('INF') else -1
+#     return dp(amount)
 
 
-print(coinChange([1,2,5], 11))
+
+# print(coinChange([1,2,5], 11))
+print(coinChange1([1,2,5], 11))

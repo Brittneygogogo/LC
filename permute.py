@@ -1,5 +1,8 @@
-res = []
 
+
+
+
+res = []
 def permute(nums):
     track = []
     backtrack(nums, track)
@@ -8,13 +11,14 @@ def permute(nums):
 def backtrack(nums, track):
     if len(track) == len(nums):
         res.append(track)
-        return 1
+        return
+
     for i in range(len(nums)):
         if nums[i] in track:
             continue
         track.append(nums[i])
         backtrack(nums, track)
-        track.pop()
+        track.remove(nums[i])
 
 
 print(permute([1,2,3]))
