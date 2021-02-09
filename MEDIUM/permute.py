@@ -28,3 +28,5 @@ class Solution:
         backtrack()
         return res
 
+x = Solution()
+print(x.permute([2,5,8,9,10]))
