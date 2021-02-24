@@ -1,6 +1,9 @@
 
-
-
+'''
+在每一步的操作中，我们会将左指针向右移动一格，表示 我们开始枚举下一个字符作为起始位置，然后我们可以不断地向右移动右指针，但需要保证这两个指针对应的子串中没有重复的字符。
+在移动结束后，这个子串就对应着 以左指针开始的，不包含重复字符的最长子串。我们记录下这个子串的长度；
+在枚举结束后，我们找到的最长的子串的长度即为答案。
+'''
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
@@ -23,4 +26,4 @@ class Solution:
 
 
 x = Solution()
-print(x.lengthOfLongestSubstring("abcabcb"))
+print(x.lengthOfLongestSubstring("abcabcbb"))

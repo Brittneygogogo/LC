@@ -13,7 +13,7 @@ class Solution:
         return max(dp)
 
 
-# nlogn
+# nlog(n)
 class Solution:
     def lengthOfLIS(self, nums) -> int:
         d = []

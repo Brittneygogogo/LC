@@ -1,3 +1,7 @@
+'''
+合并区间
+'''
+
 class Solution:
     def merge(self, intervals):
         intervals.sort(key=lambda x: x[0])
@@ -13,4 +17,5 @@ class Solution:
 
         return merged
 
-
+x = Solution()
+print(x.merge([[1,3],[2,6],[8,10],[15,18]]))
