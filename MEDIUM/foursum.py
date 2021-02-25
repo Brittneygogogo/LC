@@ -1,38 +1,39 @@
-'''
-
-class Solution{
-	public:
-	vector<vector<int>> fourSum(vector<int>& nums, int target) {
-        sort(nums.begin(),nums.end());
-        vector<vector<int> > res;
-        if(nums.size()<4)
-        return res;
-        int a,b,c,d,_size=nums.size();
-        for(a=0;a<=_size-4;a++){
-        	if(a>0&&nums[a]==nums[a-1]) continue;      //确保nums[a] 改变了
-        	for(b=a+1;b<=_size-3;b++){
-        		if(b>a+1&&nums[b]==nums[b-1])continue;   //确保nums[b] 改变了
-        		c=b+1,d=_size-1;
-        		while(c<d){
-        			if(nums[a]+nums[b]+nums[c]+nums[d]<target)
-        			    c++;
-        			else if(nums[a]+nums[b]+nums[c]+nums[d]>target)
-        			    d--;
-        			else{
-        				res.push_back({nums[a],nums[b],nums[c],nums[d]});
-        				while(c<d&&nums[c+1]==nums[c])      //确保nums[c] 改变了
-        				    c++;
-        				while(c<d&&nums[d-1]==nums[d])      //确保nums[d] 改变了
-        				    d--;
-        				c++;
-        				d--;
-					}
-				}
-			}
-		}
-		return res;
-    }
-};
-
-'''
-
+class Solution:
+    def fourSum(self, nums, target: int):
+        quadruplets = list()
+        if not nums or len(nums) < 4:
+            return quadruplets
+        
+        nums.sort()
+        length = len(nums)
+        for i in range(length - 3):
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+            if nums[i] + nums[i + 1] + nums[i + 2] + nums[i + 3] > target:
+                break
+            if nums[i] + nums[length - 3] + nums[length - 2] + nums[length - 1] < target:
+                continue
+            for j in range(i + 1, length - 2):
+                if j > i + 1 and nums[j] == nums[j - 1]:
+                    continue
+                if nums[i] + nums[j] + nums[j + 1] + nums[j + 2] > target:
+                    break
+                if nums[i] + nums[j] + nums[length - 2] + nums[length - 1] < target:
+                    continue
+                left, right = j + 1, length - 1
+                while left < right:
+                    total = nums[i] + nums[j] + nums[left] + nums[right]
+                    if total == target:
+                        quadruplets.append([nums[i], nums[j], nums[left], nums[right]])
+                        while left < right and nums[left] == nums[left + 1]:
+                            left += 1
+                        left += 1
+                        while left < right and nums[right] == nums[right - 1]:
+                            right -= 1
+                        right -= 1
+                    elif total < target:
+                        left += 1
+                    else:
+                        right -= 1
+        
+        return quadruplets

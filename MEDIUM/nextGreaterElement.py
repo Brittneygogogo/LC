@@ -39,8 +39,8 @@ class Solution:
         return res
 
 
-d = {}
-d.setdefault(1,1)
+# d = {}
+# d.setdefault(1,1)
 
 x = Solution()
 print(x.nextGreaterElement([4,1,2], [1,3,4,2]))

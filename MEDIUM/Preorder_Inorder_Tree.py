@@ -1,24 +1,17 @@
-
-
 '''
 通过前序和中序遍历结果构造二叉树
-
 void traverse(TreeNode root) {
     // 前序遍历
     preorder.add(root.val);
     traverse(root.left);
     traverse(root.right);
 }
-
 void traverse(TreeNode root) {
     traverse(root.left);
     // 中序遍历
     inorder.add(root.val);
     traverse(root.right);
 }
-
-#35ECC8
-
 '''
 
 class TreeNode:
@@ -40,7 +33,6 @@ def build(preorder, preStart, preEnd, inorder, inStart, inEnd):
         i += 1
 
     leftSize = index - inStart
-
     root =  TreeNode(rootVal)
 
     root.left = build(preorder, preStart + 1, preStart + leftSize,

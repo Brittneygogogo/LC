@@ -1,3 +1,8 @@
+
+'''
+双向链表
+'''
+
 class DLinkedNode:
     def __init__(self, key=0, value=0):
         self.key = key
@@ -32,7 +37,7 @@ class LRUCache:
             node = DLinkedNode(key, value)
             # 添加进哈希表
             self.cache[key] = node
-            # 添加至双向链表的头部
+            # 添加至双向链表的部
             self.addToHead(node)
             self.size += 1
             if self.size > self.capacity:
@@ -48,10 +53,11 @@ class LRUCache:
             self.moveToHead(node)
 
     def addToHead(self, node):
-        node.prev = self.head
+        self.head.next = node
         node.next = self.head.next
         self.head.next.prev = node
-        self.head.next = node
+        node.prev = self.head
+
 
     def removeNode(self, node):
         node.prev.next = node.next
