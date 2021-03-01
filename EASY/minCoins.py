@@ -33,7 +33,7 @@ def coinChange(coins, amount):
     print(dp[amount])
 
     return -1
-    return dp[amount]
+    # return dp[amount]
 
 #自顶向下，暴力遍历，dp(n) 的定义：输入一个目标金额 n，返回凑出目标金额 n 的最少硬币数量。
 # 基础版，可加memo

@@ -1,29 +1,8 @@
-# class Solution:
-#     def nextGreaterElement(self, nums1, nums2):
-#         """
-#         :type nums1: List[int]
-#         :type nums2: List[int]
-#         :rtype: List[int]
-#         """
+'''
 
-        # ans = []
-        # n = len(nums2)
-        # flag = False
-        #
-        # for e in nums1:
-        #     indexOfe = nums2.index(e)
-        #     for e2 in nums2[indexOfe + 1:]:
-        #         if e2 > e:
-        #             ans.append(e2)
-        #             flag = True
-        #             break
-        #     if not flag:
-        #         ans.append(-1)
-        #     else:
-        #         flag = False
-        #
-        # return ans
 
+nums2 中大于nums1的index
+'''
 class Solution:
     def nextGreaterElement(self, nums1, nums2):
         stack = []

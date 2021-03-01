@@ -1,14 +1,11 @@
 '''
 堆排序是一种选择排序，它的最坏，最好，平均时间复杂度均为O(nlogn)，它也是不稳定排序。
 
-　　a.将无需序列构建成一个堆，根据升序降序需求选择大顶堆或小顶堆;
+　　a.将无序序列构建成一个堆，根据升序降序需求选择大顶堆或小顶堆;
 
 　　b.将堆顶元素与末尾元素交换，将最大元素"沉"到数组末端;
 
 　　c.重新调整结构，使其满足堆定义，然后继续交换堆顶元素与当前末尾元素，反复执行调整+交换步骤，直到整个序列有序。
-
-代码实现
-
 
 '''
 def max_heapify(heap, heapSize, root):  # 调整列表中的元素并保证以root为根的堆是一个大根堆
@@ -33,11 +30,8 @@ def max_heapify(heap, heapSize, root):  # 调整列表中的元素并保证以ro
 
 def build_max_heap(heap):  # 构造一个堆，将堆中所有数据重新排序
     heapSize = len(heap)
-    for i in range((heapSize -2)//2,-1,-1):  # 自底向上建堆
+    for i in range((heapSize-2) // 2, -1, -1):  # 自底向上建堆
         max_heapify(heap, heapSize, i)
-
-
-import random
 
 def heap_sort(heap):  # 将根节点取出与最后一位做对调，对前面len-1个节点继续进行堆调整过程。
     build_max_heap(heap)

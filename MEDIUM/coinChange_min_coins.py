@@ -1,3 +1,5 @@
+
+
 class Solution:
     def coinChange(self, coins, amount: int) -> int:
         dp = [float('inf')] * (amount + 1)
@@ -7,3 +9,6 @@ class Solution:
             for x in range(coin, amount + 1):
                 dp[x] = min(dp[x], dp[x - coin] + 1)
         return dp[amount] if dp[amount] != float('inf') else -1
+
+x = Solution()
+print(x.coinChange([1,2,5], 11))
