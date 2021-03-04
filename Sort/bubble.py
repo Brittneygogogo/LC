@@ -13,7 +13,6 @@
 def bubble_sort(ls):
     """冒泡排序"""
     print("before: ", ls)
-    #正序
     for i in range(0, len(ls) - 1):
         # i = [0, 1, ...., len(ls) - 2]，每次比较的第一个数的下标
         # j = [i + 1, i + 2, ..., len(ls) - 1]，每次比较的第二个数的下标

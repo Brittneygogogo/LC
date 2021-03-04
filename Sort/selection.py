@@ -16,7 +16,6 @@ def selection_sort(ls):
         for j in range(i + 1, len(ls)):
             if ls[j] < ls[min_index]:
                 min_index = j
-
         if min_index != i:
             ls[min_index], ls[i] = ls[i], ls[min_index]
         print(ls)
