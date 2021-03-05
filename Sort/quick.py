@@ -1,10 +1,10 @@
 def quick_sort1(ls, start, end):
     """
         快速排序
-        low 和 high 分别指向序列的头和尾
-        low += 1， high -= 1
-        在low自增过程中，直到找到大于 mid_val 的下标
-        在high自增减过程中，直到找到小于 mid_val 的小标
+        left 和 right 分别指向序列的头和尾
+        left += 1， right -= 1
+        在left自增过程中，直到找到大于 mid_val 的下标
+        在right自增减过程中，直到找到小于 mid_val 的小标
         然后将这两个值交换
     """
     # start=end ,证明要处理的数据只有一个
@@ -13,27 +13,27 @@ def quick_sort1(ls, start, end):
     if start >= end:
         return
 
-    low = start
-    high = end
+    left = start
+    right = end
     # 把0位置的数据，认为是中间值
-    mid_val = ls[low]
+    mid_val = ls[left]
 
-    while low < high:
+    while left < right:
         # 让右边游标往左移动，目的是找到小于mid的值，放到left游标位置
-        while low < high and ls[high] > mid_val:
-            high -= 1
-        ls[low] = ls[high]
+        while left < right and ls[right] > mid_val:
+            right -= 1
+        ls[left] = ls[right]
         # 让左边游标往右移动，目的是找到大于mid的值，放到right游标位置
-        while low < high and ls[low] < mid_val:
-            low += 1
-        ls[high] = ls[low]
+        while left < right and ls[left] < mid_val:
+            left += 1
+        ls[right] = ls[left]
     # while结束后，把mid放到中间位置，left=right
-    ls[low] = mid_val
+    ls[left] = mid_val
 
     print("mid:", mid_val, ls)
 
-    quick_sort1(ls, start, low - 1)  # 左边的子序列
-    quick_sort1(ls, low + 1, end)  # 右边的子序列
+    quick_sort1(ls, start, left - 1)  # 左边的子序列
+    quick_sort1(ls, left + 1, end)  # 右边的子序列
 
     return ls
 
@@ -92,15 +92,15 @@ L = [5, 9, 1, 11, 6, 7, 2, 4]
 
 
 if __name__ == "__main__":
-    ls1 = [54, 26, 93, 17, 77, 31, 44, 55, 20]
-    ls2 = [54, 26, 93, 17, 77, 31, 44, 55, 20]
+    ls = [54, 26, 93, 17, 77, 31, 44, 55, 20]
 
-    print("before：", ls1)
-    res1 = quick_sort1(ls1, 0, len(ls1) - 1)
+    print("before：", ls)
+    res1 = quick_sort1(ls, 0, len(ls) - 1)
     print("quick sort1: ", res1)
 
     print("-" * 50)
-    print("before: ", ls2)
-    res2 = quick_sort2(ls2)
+    print("before: ", ls)
+    res2 = quick_sort2(ls)
     print("quick sort2：", res2)
-    print("quick sort3：", quick_sort3(L))
+    print("-" * 50)
+    print("quick sort3：", quick_sort3(ls))

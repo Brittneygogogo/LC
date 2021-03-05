@@ -1,40 +1,4 @@
-
-"""
-1st 暴力搜索
-你面前有一栋从 1 到N共N层的楼，然后给你K个鸡蛋（K至少为 1）。现在确定这栋楼存在楼层0 <= F <= N，
-在这层楼将鸡蛋扔下去，鸡蛋恰好没摔碎（高于F的楼层都会碎，低于F的楼层都不会碎）。
-现在问你，最坏情况下，你至少要扔几次鸡蛋，才能确定这个楼层F呢？
-
-找摔不碎鸡蛋的最高楼层F
-"""
-
-def superEggDrop1(K: int, N: int):
-    memo = dict()
-
-    def dp(K, N) -> int:
-        # base case
-        if K == 1: return N
-        if N == 0: return 0
-        # 避免重复计算
-        if (K, N) in memo:
-            return memo[(K, N)]
-
-        res = float('INF')
-        # 穷举所有可能的选择
-        for i in range(1, N + 1):
-            res = min(res,
-                      max(
-                          dp(K, N - i),
-                          dp(K - 1, i - 1)
-                      ) + 1
-                      )
-        # 记入备忘录
-        memo[(K, N)] = res
-        return res
-
-    return dp(K, N)
-
-"""
+'''
 2nd：二分优化
 首先我们根据 dp(K, N) 数组的定义（有 K 个鸡蛋面对 N 层楼，最少需要扔几次），很容易知道 K 固定时，这个函数随着 N 的增加一定是单调递增的，无论你策略多聪明，楼层增加测试次数一定要增加。
 
@@ -43,44 +7,46 @@ def superEggDrop1(K: int, N: int):
 
 
 这时候求二者的较大值，再求这些最大值之中的最小值，其实就是求这两条直线交点，也就是红色折线的最低点嘛。
+'''
 
-"""
-def superEggDrop2(self, K: int, N: int) -> int:
-    memo = dict()
+class Solution:
 
-    def dp(K, N):
-        if K == 1: return N
-        if N == 0: return 0
-        if (K, N) in memo:
-            return memo[(K, N)]
+    def superEggDrop(self, K: int, N: int) -> int:
+        memo = dict()
 
-        # for 1 <= i <= N:
-        #     res = min(res,
-        #             max(
-        #                 dp(K - 1, i - 1),
-        #                 dp(K, N - i)
-        #                 ) + 1
-        #             )
+        def dp(K, N):
+            if K == 1: return N
+            if N == 0: return 0
+            if (K, N) in memo:
+                return memo[(K, N)]
 
-        res = float('INF')
-        # 用二分搜索代替线性搜索
-        lo, hi = 1, N
-        while lo <= hi:
-            mid = (lo + hi) // 2
-            broken = dp(K - 1, mid - 1)  # 碎
-            not_broken = dp(K, N - mid)  # 没碎
-            # res = min(max(碎，没碎) + 1)
-            if broken > not_broken:
-                hi = mid - 1
-                res = min(res, broken + 1)
-            else:
-                lo = mid + 1
-                res = min(res, not_broken + 1)
+            # for 1 <= i <= N:
+            #     res = min(res,
+            #             max(
+            #                 dp(K - 1, i - 1),
+            #                 dp(K, N - i)
+            #                 ) + 1
+            #             )
 
-        memo[(K, N)] = res
-        return res
+            res = float('INF')
+            # 用二分搜索代替线性搜索
+            lo, hi = 1, N
+            while lo <= hi:
+                mid = (lo + hi) // 2
+                broken = dp(K - 1, mid - 1)  # 碎
+                not_broken = dp(K, N - mid)  # 没碎
+                # res = min(max(碎，没碎) + 1)
+                if broken > not_broken:
+                    hi = mid - 1
+                    res = min(res, broken + 1)
+                else:
+                    lo = mid + 1
+                    res = min(res, not_broken + 1)
 
-    return dp(K, N)
+            memo[(K, N)] = res
+            return res
+
+        return dp(K, N)
 
 
 """
@@ -122,5 +88,5 @@ for (int m = 1; dp[K][m] < N; m++)
 """
 
 
-
-print(superEggDrop1(2, 8))
+x = Solution()
+print(x.superEggDrop(2, 8))
