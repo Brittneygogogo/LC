@@ -3,7 +3,7 @@ class ListNode:
     def __init__(self, x):
         self.val = x
         self.next = None
-
+'''
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
         if (head==None or head.next== None):
@@ -14,11 +14,18 @@ class Solution:
         head.next = None
         return p
     
+'''
+class Solution:
+    def reverseList(self, head):
+        prev = head
+        curr = None
+        while (prev != None):
+            next = prev.next
+            prev.next = curr
+            curr = prev
+            prev = next
 
-
-
-
-
+        return curr
 
 
 

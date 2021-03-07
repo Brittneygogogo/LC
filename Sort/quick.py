@@ -31,7 +31,7 @@ def quick_sort1(ls, start, end):
     ls[left] = mid_val
 
     print("mid:", mid_val, ls)
-
+    # print("ls", ls)
     quick_sort1(ls, start, left - 1)  # 左边的子序列
     quick_sort1(ls, left + 1, end)  # 右边的子序列
 

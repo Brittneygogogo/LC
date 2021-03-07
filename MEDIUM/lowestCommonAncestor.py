@@ -16,4 +16,4 @@ class Solution:
         return root # 2. if left and right:
 
 x = Solution()
-print(x.lowestCommonAncestor())
+print(x.lowestCommonAncestor(root))
