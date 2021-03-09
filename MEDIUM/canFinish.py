@@ -1,5 +1,6 @@
 import collections
 '''
+207
 初始时，所有入度为 0 的节点都被放入队列中，它们就是可以作为拓扑排序最前面的节点，并且它们之间的相对顺序是无关紧要的。
 在广度优先搜索的每一步中，我们取出队首的节点 u：
 我们将 u 放入答案中；
@@ -11,9 +12,9 @@ class Solution:
         edges = collections.defaultdict(list)
         indeg = [0] * numCourses
 
-        for info in prerequisites:
-            edges[info[1]].append(info[0])
-            indeg[info[0]] += 1
+        for cur, pre in prerequisites:
+            edges[pre].append(cur)
+            indeg[cur] += 1
 
         q = collections.deque([u for u in range(numCourses) if indeg[u] == 0])
         visited = 0
