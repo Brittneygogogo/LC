@@ -1,6 +1,7 @@
 
 
 '''
+组合
 完全背包，不限个数
 有几种凑法可以凑成5
 
@@ -25,7 +26,7 @@ def coinChange(coins, amount):
     # dp[0] = 0
     for i in range(n+1):
         dp[i][0] = 1
-    print(dp)
+    # print(dp)
 
     for i in range(1, n + 1):
         for j in range(1, amount + 1):
@@ -70,6 +71,6 @@ def coinChange2(coins, amount) -> int:
 #     return dp[n][amount]
 
 
-print(coinChange([1,2,5], 5))
-print(coinChange2([1,2,5], 5))
+print(coinChange([2,5,10], 11))
+print(coinChange2([2,5,10], 11))
 # print(coinChange3([1,2,5], 5))

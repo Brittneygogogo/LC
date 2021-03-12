@@ -121,4 +121,4 @@ if __name__ == "__main__":
     res2 = quick_sort2(ls)
     print("quick sort2：", res2)
     print("-" * 50)
-    print("quick sort3：", quick_sort3(ls, 0, len(ls)-1))
+    # print("quick sort3：", quick_sort3(ls, 0, len(ls)-1))

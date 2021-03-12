@@ -6,26 +6,25 @@
 
 注意我们说的 i 是从 1 开始算的，而数组 nums 的索引时从 0 开始算的，所以 nums[i-1] 代表的是第 i 个物品的重量，j - nums[i-1] 就是背包装入物品 i 之后还剩下的容量。
 /* 计算 nums 中有几个子集的和为 sum */
-int subsets(int[] nums, int sum) {
-    int n = nums.length;
-    int[] dp = new int[sum + 1];
-    // base case
-    dp[0] = 1;
+'''
+# def subsets( nums,  sum):
+#     n = len(nums)
+#     dp = new int[sum + 1];
+#     # base case
+#     dp[0] = 1;
+#
+#     for (int i = 1; i <= n; i++) :
+#         #/ j 要从后往前遍历
+#         for (int j = sum; j >= 0; j--):
+#             #状态转移方程
+#             if (j >= nums[i-1]):
+#                 dp[j] = dp[j] + dp[j-nums[i-1]];
+#             else:
+#                 dp[j] = dp[j];
+#
+#     return dp[sum]
 
-    for (int i = 1; i <= n; i++) {
-        // j 要从后往前遍历
-        for (int j = sum; j >= 0; j--) {
-            // 状态转移方程
-            if (j >= nums[i-1]) {
-                dp[j] = dp[j] + dp[j-nums[i-1]];
-            } else {
-                dp[j] = dp[j];
-            }
-        }
-    }
-    return dp[sum];
-}
-
+'''
 给你一个可装载重量为W的背包和N个物品，每个物品有重量和价值两个属性。其中第i个物品的重量为wt[i]，价值为val[i]，现在让你用这个背包装物品，最多能装的价值是多少？
 
 举个简单的例子，输入如下：
