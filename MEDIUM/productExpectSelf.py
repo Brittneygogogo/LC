@@ -9,7 +9,7 @@ class Solution:
         answer[0] = 1
         for i in range(1, length):
             answer[i] = nums[i - 1] * answer[i - 1]
-
+        print(answer)
         # R 为右侧所有元素的乘积
         # 刚开始右边没有元素，所以 R = 1
         R = 1

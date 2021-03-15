@@ -42,7 +42,31 @@ x = Solution()
 print(x.rob([]))
 
 '''
+此题中的房间是环状排列的（即首尾相接），而 198.198. 题中的房间是单排排列的；而这也是此题的难点。
+在不偷窃第一个房子的情况下（即 nums[1:]nums[1:]），最大金额是 p_1p 
+1 在不偷窃最后一个房子的情况下（即 nums[:n-1]nums[:n−1]），最大金额是 p_2p 
+2 综合偷窃最大金额： 为以上两种情况的较大值，即 max(p1,p2)max(p1,p2) 。
+
+'''
+class Solution:
+    def rob(self, nums: [int]) -> int:
+        def my_rob(nums):
+            cur, pre = 0, 0
+            for num in nums:
+                cur, pre = max(pre + num, cur), cur
+            return cur
+        return max(my_rob(nums[:-1]), my_rob(nums[1:])) if len(nums) != 1 else nums[0]
+
+
+'''
 路径是二叉树
+ls(rob)表示选择当前结点被选中时候可以抢劫的最大值
+ln(rob)表示当前结点不被选择时候可以抢劫的最大值
+子树根结点被rob时,ls(left) + ln(right)
+子树根结点不rob时，max(ls(left),ls(left)) + max(ln(right),n(right))
+时间复杂度为O(n)
+空间复杂度为O(logn)
+
 '''
 class TreeNode:
     def __init__(self, x):

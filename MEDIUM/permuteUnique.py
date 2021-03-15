@@ -22,4 +22,4 @@ class Solution:
             check[i] = 0
 
 x =Solution()
-print(x.permuteUnique( [1,1,2]))
+print(x.permuteUnique([1,1,2]))

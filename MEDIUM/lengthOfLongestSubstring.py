@@ -25,5 +25,27 @@ class Solution:
         return ans
 
 
+class Solution:
+    def lengthOfLongestSubstring(self, s: str):
+        n = len(s)
+        if len(s) < 1:
+            return 0
+        max_length = 1
+        for i in range(n):
+            head_ele = s[i]
+            tmp_list = [head_ele]
+            for ele in s[i + 1:]:
+                if ele not in tmp_list:
+                    tmp_list.append(ele)
+                    max_length = max(len(tmp_list), max_length)
+                else:
+                    break
+            return "".join(tmp_list)
+
+
+x = Solution()
+print(x.lengthOfLongestSubstring("ebcadcabc"))
+
+
 x = Solution()
 print(x.lengthOfLongestSubstring("abcabcbb"))
