@@ -3,31 +3,29 @@
 :type n: int
 :rtype: int
 """
-# 递归，超时(斐波那契)
-# def pa(n, s):
-#     if n > 0:
-#         s = pa(n - 1, s)
-#     if n > 1:
-#         s = pa(n - 2, s)
-#     if n==0:
-#         s += 1
-#     return s
-#
-# s = 0
-# s = pa(n, s)
-# return s
 
-def climbStairs(n):
-    p = 0
-    q = 0
-    r = 1
-    i = 1
-    while (i <= n):
-        i += 1
-        p = q
-        q = r
-        r = p + q
-    return r
+class Solution:
+    def climbStairs(self, n):
+        dp = [-1] * (n + 1)
+        dp[0] = 1
+        dp[1] = 1
+        for i in range(2, n + 1):
+            dp[i] = dp[i - 1] + dp[i - 2]
 
+        return dp[-1]
 
-print(climbStairs(5))
+# def climbStairs(n):
+#     p = 0
+#     q = 0
+#     r = 1
+#     i = 1
+#     while (i <= n):
+#         i += 1
+#         p = q
+#         q = r
+#         r = p + q
+#     return r
+
+x = Solution()
+
+print(x.climbStairs(3))
