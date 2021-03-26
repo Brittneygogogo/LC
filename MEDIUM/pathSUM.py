@@ -1,26 +1,27 @@
+
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
 class Solution:
-    def pathSum(self, root, sum):
+    def pathSum(self, root: TreeNode, sum: int):
         res = []
-        if not root: return []
-
-        def helper(root, sum, tmp):
-            if not root:
-                return
-            if not root.left and not root.right and sum - root.val == 0:
-                tmp += [root.val]
-                res.append(tmp)
-                return
-            helper(root.left, sum - root.val, tmp + [root.val])
-            helper(root.right, sum - root.val, tmp + [root.val])
-
-        helper(root, sum, [])
+        self.dfs(root, sum, res, [])
         return res
 
+    def dfs(self, root, sum, res, path):
+        if not root: # 空节点，不做处理
+            return
+        if not root.left and not root.right: # 叶子节点
+            if sum == root.val: # 剩余的「路径和」恰好等于叶子节点值
+                res.append(path + [root.val]) # 把该路径放入结果中
+        self.dfs(root.left, sum - root.val, res, path + [root.val]) # 左子树
+        self.dfs(root.right, sum - root.val, res, path + [root.val]) # 右子树
 
 x = Solution()
 # print(x.pathSum(root,))
-
-
 
 class Solution:
     def pathSum(self, root, total: int):
