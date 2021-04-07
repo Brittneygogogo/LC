@@ -4,6 +4,8 @@ class ListNode:
         self.val = x
         self.next = None
 '''
+递归
+'''
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
         if (head==None or head.next== None):
@@ -14,20 +16,18 @@ class Solution:
         head.next = None
         return p
     
-'''
+
 class Solution:
     def reverseList(self, head):
-        prev = head
-        curr = None
-        while (prev != None):
-            next = prev.next
-            prev.next = curr
-            curr = prev
-            prev = next
+        prev = None
+        curr = head
+        while (curr != None):
+            next = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next
 
-        return curr
-
-
+        return prev
 
 
 root = ListNode(1)
@@ -36,9 +36,6 @@ root.next.next  = ListNode(3)
 root.next.next.next = ListNode(4)
 root.next.next.next.next = ListNode(5)
 #
-# while(root):
-#     print(root.val)
-#     root = root.next
 
 x = Solution()
 #新链表头结点， 原链表尾结点
