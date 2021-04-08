@@ -13,9 +13,11 @@ class Solution:
                     f[j] = 0
                     continue
                 if (j - 1 >= 0 and obstacleGrid[i][j - 1] == 0):
-                    f[j] +=f[j - 1]
+                    f[j] += f[j - 1]
 
         return f[-1]
 
 x = Solution()
-print(x.uniquePathsWithObstacles([[0,0,0],[0,1,0],[0,0,0]]))
+print(x.uniquePathsWithObstacles([[0,0,0],
+                                  [0,1,0],
+                                  [0,0,0]]))
