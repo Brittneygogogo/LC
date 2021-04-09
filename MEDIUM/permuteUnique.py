@@ -21,5 +21,5 @@ class Solution:
             self.backtrack(sol + [nums[i]], nums, check)
             check[i] = 0
 
-x =Solution()
+x = Solution()
 print(x.permuteUnique([1,1,2]))

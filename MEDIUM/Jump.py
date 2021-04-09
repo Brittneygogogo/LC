@@ -5,7 +5,7 @@
 
 '''
 class Solution:
-    def jump(self, nums) -> int:
+    def Jump(self, nums) -> int:
         n = len(nums)
         maxPos, end, step = 0, 0, 0
         for i in range(n - 1):

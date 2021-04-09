@@ -21,7 +21,7 @@ class TreeNode:
         self.right = None
 
 def buildTree(preorder, inorder):
-    return build(preorder, 0, len(preorder)-1, inorder, 0, len(inorder)-1)
+    return build(preorder, 0, len(preorder) - 1, inorder, 0, len(inorder) - 1)
 
 def build(preorder, preStart, preEnd, inorder, inStart, inEnd):
     rootVal = preorder[preStart]
