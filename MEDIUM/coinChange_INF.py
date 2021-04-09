@@ -1,5 +1,3 @@
-
-
 '''
 组合
 完全背包，不限个数
@@ -18,37 +16,35 @@ dp[i][w]表示：对于前i个物品，当前背包的容量为w时，这种情�
 显然，你应该寻求剩余重量w-wt[i-1]限制下能装的最大价值，加上第i个物品的价值val[i-1]，这就是装第i个物品的前提下，背包可以装的最大价值。
 
 '''
-
-
 def coinChange(coins, amount):
     n = len(coins)
     dp = [[0] * (amount + 1)] * (n + 1)
     # dp[0] = 0
-    for i in range(n+1):
+    for i in range(n + 1):
         dp[i][0] = 1
-    # print(dp)
+    print(dp)
 
     for i in range(1, n + 1):
-        for j in range(1, amount + 1):
-            if j - coins[i - 1] >=0:
-                dp[i][j] = dp[i - 1][j] + dp[i][j - coins[i - 1]]
+        for w in range(1, amount + 1):
+            if w - coins[i - 1] >= 0:
+                dp[i][w] = dp[i - 1][w] + dp[i][w - coins[i - 1]]
             else:
-                dp[i][j] = dp[i - 1][j]
+                dp[i][w] = dp[i - 1][w]
 
     return dp[n][amount]
 
-
-'''
-官方
-'''
-def coinChange2(coins, amount) -> int:
-    dp = [0] * (amount + 1)
-    dp[0] = 1
-
-    for coin in coins:
-        for x in range(coin, amount + 1):
-            dp[x] += dp[x - coin]
-    return dp[amount]
+#
+# '''
+# 官方
+# '''
+# def coinChange2(coins, amount) -> int:
+#     dp = [0] * (amount + 1)
+#     dp[0] = 1
+#
+#     for coin in coins:
+#         for x in range(coin, amount + 1):
+#             dp[x] += dp[x - coin]
+#     return dp[amount]
 
 
 #
@@ -71,6 +67,6 @@ def coinChange2(coins, amount) -> int:
 #     return dp[n][amount]
 
 
-print(coinChange([2,5,10], 11))
-print(coinChange2([2,5,10], 11))
+print(coinChange([1,2,5], 5))
+# print(coinChange2([2,5,10], 11))
 # print(coinChange3([1,2,5], 5))
