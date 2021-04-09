@@ -22,7 +22,7 @@ def coinChange(coins, amount):
     # dp[0] = 0
     for i in range(n + 1):
         dp[i][0] = 1
-    print(dp)
+    # print(dp)
 
     for i in range(1, n + 1):
         for w in range(1, amount + 1):
@@ -30,25 +30,26 @@ def coinChange(coins, amount):
                 dp[i][w] = dp[i - 1][w] + dp[i][w - coins[i - 1]]
             else:
                 dp[i][w] = dp[i - 1][w]
-
+    print(dp)
     return dp[n][amount]
 
 #
 # '''
 # 官方
 # '''
-# def coinChange2(coins, amount) -> int:
-#     dp = [0] * (amount + 1)
-#     dp[0] = 1
-#
-#     for coin in coins:
-#         for x in range(coin, amount + 1):
-#             dp[x] += dp[x - coin]
-#     return dp[amount]
+def coinChange2(coins, amount) -> int:
+    dp = [0] * (amount + 1)
+    dp[0] = 1
+
+    for coin in coins:
+        for x in range(coin, amount + 1):
+            dp[x] += dp[x - coin]
+            print(coin, dp)
+    return dp[amount]
 
 
-#
-# def coinChange3(coins, amount):
+
+# def coinChange3(coins, amount, wt):
 #     n = len(coins)
 #     dp = [[0] * (amount + 1)] * (n + 1)
 #     # dp[0] = 0
@@ -67,6 +68,6 @@ def coinChange(coins, amount):
 #     return dp[n][amount]
 
 
-print(coinChange([1,2,5], 5))
-# print(coinChange2([2,5,10], 11))
-# print(coinChange3([1,2,5], 5))
+# print(coinChange([1,2,5], 5))
+# print(coinChange2([1,2,5], 5))
+# print(coinChange3([4,2,3], 5, [2,1,3]))
