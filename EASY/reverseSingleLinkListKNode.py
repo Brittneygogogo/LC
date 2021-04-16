@@ -1,46 +1,47 @@
-# Definition for singly-linked list.
-class ListNode(object):
-    def __init__(self, val=0, next = None):
+class ListNode:
+    def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
-def reverseKGroup(head: ListNode, k: int):
-    #dummy是伪节点，作为总体的头结点
-    dummy = ListNode(0)
-    p = dummy
-    while True:
-        count = k
-        stack = []
-        #tmp和head都是每轮的第一个节点,tmp用来移动往后数count个数。head为当前轮的第一个节点
-        tmp = head
-        while count and tmp:
-            stack.append(tmp)
-            tmp = tmp.next
-            count -= 1
-        # 注意,目前tmp所在k+1位置
-        # 说明剩下的链表不够k个,跳出循环
-        if count:
-            p.next = head
-            break
-        # 翻转操作，p为每轮翻转前的头结点，因此指向翻转后的第一个节点
-        while stack:
-            p.next = stack.pop()
-            p = p.next
-        #此时p为stack中的最后一个节点，与剩下链表连接起来
-        p.next = tmp
-        #重新数第二轮count的时候，tmp和head仍然指向第一个节点
-        head = tmp
-    return dummy.next
+class Solution:
+    # 翻转一个子链表，并且返回新的头与尾
+    def reverse(self, head: ListNode, tail: ListNode):
+        prev = tail.next
+        p = head
+        while prev != tail:
+            nex = p.next
+            p.next = prev
+            prev = p
+            p = nex
+        return tail, head
 
-l1 = ListNode(1, next = ListNode(2, next = ListNode(3, next=ListNode(4, next = ListNode(5)))))
+    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
+        hair = ListNode(0)
+        hair.next = head
+        pre = hair
 
-# while l1 != None:
-#     print(l1.val)
-#     l1 = l1.next
+        while head:
+            tail = pre
+            # 查看剩余部分长度是否大于等于 k
+            for i in range(k):
+                # 不到k个 也翻转
+                if tail.next:
+                    tail = tail.next
+                # 不到K个 不翻转
+                    # if not tail:
+                    #     return hair.next
+            nex = tail.next
+            head, tail = self.reverse(head, tail)
+            # 把子链表重新接回原链表
+            pre.next = head
+            tail.next = nex
+            pre = tail
+            head = tail.next
+        return hair.next
 
-l2 = reverseKGroup(l1, 3)
-#
-while l2 != None:
-    print(l2.val)
-    l2 = l2.next
-
+solution = Solution()
+head = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5, ListNode(6, ListNode(7, ListNode(8, None))))))))
+newhead = solution.reverseKGroup(head, 3)
+while newhead:
+    print(newhead.val)
+    newhead = newhead.next
