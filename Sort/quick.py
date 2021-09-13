@@ -1,3 +1,11 @@
+'''
+最优O(nlogn)
+最坏O(N^2)
+平均O(nlogn）
+空间O(log2n)
+不稳定
+'''
+
 def quick_sort1(ls, start, end):
     """
         快速排序

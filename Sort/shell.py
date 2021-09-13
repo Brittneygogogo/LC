@@ -1,3 +1,11 @@
+'''
+最好O(n)
+最坏O(n^2)
+平均O(n^1.3-2)
+空间O(1)
+不稳定
+'''
+
 def shell_sort(ls):
     """希尔排序"""
     print("before: ", ls)

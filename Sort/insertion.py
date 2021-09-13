@@ -1,5 +1,11 @@
 # coding=utf-8
-
+'''
+最优O(n)
+最坏O(n^2)
+平均O(n^2)
+空间O(1)
+稳定
+'''
 
 def insert_sort(ls):
     """插入排序"""
