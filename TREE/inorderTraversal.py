@@ -1,3 +1,4 @@
+#递归
 class Solution(object):
 	def inorderTraversal(self, root):
 		"""
@@ -16,7 +17,7 @@ class Solution(object):
 		return res
 
 
-#2
+#迭代
 class Solution(object):
 	def inorderTraversal(self, root):
 		"""
