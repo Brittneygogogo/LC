@@ -24,6 +24,15 @@ class Solution:
 
 s = Solution()
 root = ListNode(1)
-root.next = ListNode(1)
-root.next.next = ListNode(1)
+root.next = ListNode(2)
+root.next.next = ListNode(3)
 print(s.removeElements(root, 1))
+
+
+
+
+
+
+
+
+
