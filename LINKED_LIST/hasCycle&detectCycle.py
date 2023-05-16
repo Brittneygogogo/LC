@@ -1,4 +1,3 @@
-
 class ListNode:
     def __init__(self, x, next):
         self.val = x
@@ -41,7 +40,7 @@ class Solution:
                     fast = fast.next
                     slow = slow.next
                 return fast.val
-
+        return None
 
 
 x = ListNode(2, None)
