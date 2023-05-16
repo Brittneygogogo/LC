@@ -46,8 +46,8 @@ class Solution:
         return self.helper(root.left, min_node, root) and self.helper(root.right, root, max_node)
 
 
-node2 = node(x = 2, a = node(x = 1), b =node(x = 3))
-node5 = node(x = 5, b = node(x = 6))
+node2 = node(x = 5, a = node(x = 1), b =node(x = 4))
+node5 = node(x = 4, b = node(x = 6))
 
 root = node(x= 4, a = node2, b = node5)
 
