@@ -1,8 +1,10 @@
 class Solution:
     def getIntersectionNode(self, headA, headB):
-        curr1, curr2 = headA, headB
-        while curr1 != curr2:
-            curr1 = curr1.next if curr1 else headB
-            curr2 = curr2.next if curr2 else headA
+        if not headA and not headB:
+            return None
+        pa, pb = headA, headB
+        while pa != pb:
+            pa = pa.next if pa else headB
+            pb = pb.next if pb else headA
 
-        return curr1
+        return pa

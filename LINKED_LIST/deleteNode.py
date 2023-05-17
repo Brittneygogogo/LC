@@ -1,5 +1,7 @@
 '''
 定义一个函数删除该节点。
+ 1    2    3   4
+prev cur
 '''
 
 # Definition for singly-linked list.
