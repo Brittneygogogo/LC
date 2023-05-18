@@ -1,5 +1,6 @@
-
 '''
+哈希表查找快，但是数据无固定顺序；链表有顺序之分，插入删除快，但是查找慢，所以结合二者的长处，可以形成一种新的数据结构：哈希链表 LinkedHashMap：
+
 双向链表
 '''
 
@@ -10,9 +11,7 @@ class DLinkedNode:
         self.prev = None
         self.next = None
 
-
 class LRUCache:
-
     def __init__(self, capacity: int):
         self.cache = dict()
         # 使用伪头部和伪尾部节点
@@ -37,7 +36,7 @@ class LRUCache:
             node = DLinkedNode(key, value)
             # 添加进哈希表
             self.cache[key] = node
-            # 添加至双向链表的部
+            # 添加至双向链表的部分
             self.addToHead(node)
             self.size += 1
             if self.size > self.capacity:
@@ -58,7 +57,6 @@ class LRUCache:
         self.head.next.prev = node
         node.prev = self.head
 
-
     def removeNode(self, node):
         node.prev.next = node.next
         node.next.prev = node.prev
@@ -72,3 +70,7 @@ class LRUCache:
         self.removeNode(node)
         return node
 
+
+'''
+ 
+'''
