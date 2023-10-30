@@ -13,6 +13,7 @@ def removeElement(nums, val):
             nums[i], nums[j] = nums[j], nums[i]
             i += 1
         j += 1
+    #i左侧的都为要删除的元素
     nums = nums[i:]
     print(nums)
     return len(nums)

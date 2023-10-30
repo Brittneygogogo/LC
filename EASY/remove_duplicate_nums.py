@@ -16,5 +16,28 @@ def removeDuplicates(nums):
     print(nums)
     return i + 1
 
+#所有letter都只出现2次
+#原地删除重复元素 fast和slow保持2/k的距离
+
+def removeDuplicates2(nums):
+    slow = 2
+    fast = 2
+    if len(nums) < 2:
+        return 0
+
+    while fast < len(nums):
+        if nums[slow - 2] != nums[fast]:
+            nums[slow], nums[fast] = nums[fast], nums[slow]
+            slow += 1
+        fast += 1
+    print(nums)
+    return slow + 1
+
+
+
 
 print(removeDuplicates([0,0,1,1,1,2,2,3,3,4]))
+
+
+print(removeDuplicates2([0,0,1,1,1,2,2,3,3,4]))
+

@@ -1,3 +1,13 @@
+'''
+不同的二叉搜索树
+G(n)  长度为 n的序列能构成的不同二叉搜索树的个数。
+
+F(i,n)F(i, n)F(i,n): 以 iii 为根、序列长度为 nnn 的不同二叉搜索树个数 (1≤i≤n)(1 \leq i \leq n)(1≤i≤n)。
+
+
+'''
+
+
 class Solution:
     def numTrees(self, n):
         """
