@@ -1,35 +1,23 @@
-# 在数组中找到两个数，使得它们的和等于目标值，可以首先固定第一个数，
-# 然后寻找第二个数，第二个数等于目标值减去第一个数的差。利用数组的有序性质，
-# 可以通过二分查找的方法寻找第二个数。为了避免重复寻找，在寻找第二个数时，只在第一个数的右侧寻找。
-# def twoSum(numbers, target):
-#     n = len(numbers)
-#     for i in range(n):
-#         low, high = i + 1, n - 1
-#         while low <= high:
-#             mid = (low + high) // 2
-#             if numbers[mid] == target - numbers[i]:
-#                 return [i + 1, mid + 1]
-#             elif numbers[mid] > target - numbers[i]:
-#                 high = mid - 1
-#             else:
-#                 low = mid + 1
-#
-#     return [-1, -1]
+
+# 无序， 先变有序，然后双指针两边找，返回值，
 
 
-#无序， 先变有序，然后双指针两边找，返回值，
-def twoSum(numbers, target):
-    numbers = sorted(numbers)
-    lo = 0
-    hi = len(numbers) - 1
-    while(lo <hi):
-        if numbers[lo]+numbers[hi]==target:
-            return [lo, hi]
-        elif numbers[lo]+numbers[hi] < target:
+def twoSum(nums: List[int], target: int) -> List[int]:
+    # 先对数组排序
+    nums.sort()
+    # 左右指针
+    lo, hi = 0, len(nums) - 1
+    while lo < hi:
+        sum = nums[lo] + nums[hi]
+        # 根据 sum 和 target 的比较，移动左右指针
+        if sum < target:
             lo += 1
-        else:
+        elif sum > target:
             hi -= 1
-    return[-1,-1]
+        elif sum == target:
+            return [nums[lo], nums[hi]]
+    return []
+
 
 
 #dict模拟hash表，快，记录下来不用回溯，找到就返回，无法解决有多对的情况。如果有多个相同的值就返回第一个

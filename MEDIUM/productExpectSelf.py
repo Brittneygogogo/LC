@@ -10,6 +10,8 @@ class Solution:
         for i in range(1, length):
             answer[i] = nums[i - 1] * answer[i - 1]
         print(answer)
+        # 1 1 2 6
+        # 1 2 3 4
         # R 为右侧所有元素的乘积
         # 刚开始右边没有元素，所以 R = 1
         R = 1
@@ -20,6 +22,24 @@ class Solution:
             R *= nums[i]
 
         return answer
+'''
 
+
+public int[] productExceptSelf(int[] nums) {
+        int n=nums.length;
+        int[] ans=new int[n];
+        Arrays.fill(ans,1);
+        int beforeSum=1;
+        int afterSum=1;
+        for(int i=0,j=n-1;i<n;i++,j--){
+            ans[i]*=beforeSum;
+            ans[j]*=afterSum;
+            beforeSum*=nums[i];
+            afterSum*=nums[j];
+        }
+        return ans;
+    }
+
+'''
 x = Solution()
 print(x.productExceptSelf([1,2,3,4]))

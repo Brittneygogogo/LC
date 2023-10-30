@@ -1,3 +1,49 @@
+from typing import List
+'''
+纵向扫描
+纵向扫描时，从前往后遍历所有字符串的每一列，比较相同列上的字符是否相同，
+如果相同则继续对下一列进行比较，如果不相同则当前列不再属于公共前缀，当前列之前的部分为最长公共前缀。
+'''
+
+
+class Solution:
+    def longestCommonPrefix(self, strs) -> str:
+        if not strs:
+            return ""
+
+        length, count = len(strs[0]), len(strs)
+        for i in range(length):
+            c = strs[0][i]
+            if any(i == len(strs[j]) or strs[j][i] != c for j in range(1, count)):
+                return strs[0][:i]
+
+        return strs[0]
+
+'''
+    横向扫描
+'''
+
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        if not strs:
+            return ""
+
+        prefix, count = strs[0], len(strs)
+        for i in range(1, count):
+            prefix = self.lcp(prefix, strs[i])
+            if not prefix:
+                break
+
+        return prefix
+
+    def lcp(self, str1, str2):
+        length, index = min(len(str1), len(str2)), 0
+        while index < length and str1[index] == str2[index]:
+            index += 1
+        return str1[:index]
+
+
+
 '''
 二分查找
 '''
@@ -20,23 +66,6 @@ class Solution:
                 high = mid - 1
 
         return strs[0][:low]
-'''
-纵向扫描
-纵向扫描时，从前往后遍历所有字符串的每一列，比较相同列上的字符是否相同，
-如果相同则继续对下一列进行比较，如果不相同则当前列不再属于公共前缀，当前列之前的部分为最长公共前缀。
-'''
-class Solution:
-    def longestCommonPrefix(self, strs) -> str:
-        if not strs:
-            return ""
-
-        length, count = len(strs[0]), len(strs)
-        for i in range(length):
-            c = strs[0][i]
-            if any(i == len(strs[j]) or strs[j][i] != c for j in range(1, count)):
-                return strs[0][:i]
-
-        return strs[0]
 '''
 分治
 '''
