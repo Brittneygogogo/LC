@@ -6,12 +6,22 @@ class ListNode:
         self.val = val
         self.next = next
 
+
+'''
+dummy -> head -> 1
+prev     curr    1
+
+
+另设dummy，以免头结点为删除节点。
+两或多指针 从前往后依次传值
+'''
+
 class Solution:
     def removeElements(self, head: ListNode, val: int) -> ListNode:
-        sentinel = ListNode(0)
-        sentinel.next = head
+        dummy = ListNode(0)
+        dummy.next = head
 
-        prev, curr = sentinel, head
+        prev, curr = dummy, head
         while curr:
             if curr.val == val:
                 prev.next = curr.next
@@ -19,7 +29,7 @@ class Solution:
                 prev = curr
             curr = curr.next
 
-        return sentinel.next
+        return dummy.next
 
 
 s = Solution()

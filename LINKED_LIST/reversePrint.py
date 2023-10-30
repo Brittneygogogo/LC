@@ -7,13 +7,22 @@ class ListNode:
         self.next = None
 
 
-def reversePrint2(self, head: ListNode) -> List[int]:
-    # 用「分解问题」的思路写递归解法
-    def sub_problem(head):
-        if not head:
-            return []
-        sub_res = sub_problem(head.next)
-        sub_res.append(head.val)
-        return sub_res
+# def reversePrint2(self, head: ListNode) -> List[int]:
+#     # 用「分解问题」的思路写递归解法
+#     def sub_problem(head):
+#         if not head:
+#             return []
+#         sub_res = sub_problem(head.next)
+#         sub_res.append(head.val)
+#         return sub_res
+#
+#     return sub_problem(head)
 
-    return sub_problem(head)
+
+
+class Solution:
+    def reversePrint(self, head: ListNode) -> List[int]:
+        if head:
+            return self.reversePrint(head.next) + [head.val]
+        else:
+            return []
