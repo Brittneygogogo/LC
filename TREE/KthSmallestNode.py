@@ -31,8 +31,31 @@ class Solution:
         :rtype: int
         """
         def inorder(r):
-            return inorder(r.left) + [r.val] + inorder(r.right) if r else []
+            if r:
+                return inorder(r.left) + [r.val] + inorder(r.right)
+            else:
+                return []
 
         return inorder(root)[k - 1]
 
 
+
+class Solution:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        # 利用 BST 的中序遍历特性
+        self.res = 0
+        self.rank = 0
+        self.traverse(root, k)
+        return self.res
+
+    def traverse(self, root: TreeNode, k: int) -> None:
+        if root is None:
+            return
+        self.traverse(root.left, k)
+        # 中序遍历代码位置
+        self.rank += 1
+        if k == self.rank:
+            # 找到第 k 小的元素
+            self.res = root.val
+            return
+        self.traverse(root.right, k)

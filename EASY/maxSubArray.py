@@ -13,6 +13,26 @@ def maxSubArray(nums):
 
 
 
+# 注意：python 代码由 chatGPT🤖 根据我的 java 代码翻译，旨在帮助不同背景的读者理解算法逻辑。
+# 本代码已经通过力扣的测试用例，应该可直接成功提交。
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        n = len(nums)
+        if n == 0:
+            return 0
+        dp = [0] * n
+        # base case
+        # 第一个元素前面没有子数组
+        dp[0] = nums[0]
+        # 状态转移方程
+        for i in range(1, n):
+            dp[i] = max(nums[i], nums[i] + dp[i - 1])
+        # 得到 nums 的最大子数组
+        res = float('-inf')
+        for i in range(n):
+            res = max(res, dp[i])
+        return res
 
 
 

@@ -22,8 +22,8 @@ class Solution:
 
     '''
     定义：
-    中序遍历数组为 inorder[inStart..inEnd]，
-    后序遍历数组为 postorder[postStart..postEnd]，
+    中序遍历数组为 inorder in [inStart..inEnd]，
+    后序遍历数组为 postorder  [postStart..postEnd] post，
     构造这个二叉树并返回该二叉树的根节点
     '''
     def build(self, inorder: List[int], inStart: int, inEnd: int,

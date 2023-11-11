@@ -1,7 +1,11 @@
 '''
+https://leetcode.cn/problems/lru-cache/solutions/259678/lruhuan-cun-ji-zhi-by-leetcode-solution/?envType=study-plan-v2&envId=top-interview-150
+
 哈希表查找快，但是数据无固定顺序；链表有顺序之分，插入删除快，但是查找慢，所以结合二者的长处，可以形成一种新的数据结构：哈希链表 LinkedHashMap：
 
 双向链表
+
+两种数据结构+size变量 建立cache（dict)和双向链表，插入和删除都要同时操作
 '''
 
 class DLinkedNode:
@@ -70,7 +74,3 @@ class LRUCache:
         self.removeNode(node)
         return node
 
-
-'''
- 
-'''

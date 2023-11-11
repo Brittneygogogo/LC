@@ -19,6 +19,7 @@ class Solution:
                 return False
             slow = slow.next
             fast = fast.next.next
+
         return True
 
 '''

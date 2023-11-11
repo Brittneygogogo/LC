@@ -18,8 +18,6 @@ def twoSum(nums: List[int], target: int) -> List[int]:
             return [nums[lo], nums[hi]]
     return []
 
-
-
 #dict模拟hash表，快，记录下来不用回溯，找到就返回，无法解决有多对的情况。如果有多个相同的值就返回第一个
 def twoSums(nums, target) :
     hashtable = dict()

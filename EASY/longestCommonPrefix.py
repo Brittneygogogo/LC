@@ -7,17 +7,21 @@ from typing import List
 
 
 class Solution:
-    def longestCommonPrefix(self, strs) -> str:
-        if not strs:
-            return ""
+    def longestCommonPrefix(self, strs: List[str]) -> str:
 
-        length, count = len(strs[0]), len(strs)
-        for i in range(length):
-            c = strs[0][i]
-            if any(i == len(strs[j]) or strs[j][i] != c for j in range(1, count)):
-                return strs[0][:i]
+        if len(strs) == 0 or len(strs[0]) == 0:
+            return ''
 
-        return strs[0]
+        res = ''
+        for i in range(len(strs[0])):
+            for j in range(1, len(strs)):
+                if i >= len(strs[j]) or strs[j][i] != strs[0][i]:
+                    return res
+
+            res += strs[0][i]
+
+        return res
+
 
 '''
     横向扫描

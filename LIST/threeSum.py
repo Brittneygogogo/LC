@@ -1,6 +1,9 @@
 '''
 保持第二重循环不变，而将第三重循环变成一个从数组最右端开始向左移动的指针，
 '''
+from typing import List
+
+
 class Solution:
     def threesum(self, nums, target):
         n = len(nums)
@@ -27,6 +30,19 @@ s = Solution()
 print(s.threesum([2,5,7,4], 11))
 
 
+def threesum(nums, target):
+    n = len(nums)
+    nums.sort()
+    ans = []
+    for first in range(n):
+        first = i
+        for sec in range(first +1, n):
+
+
+    return ans
+
+
+
 
 '''
 找三数之和和为0。
@@ -41,35 +57,39 @@ print(s.threesum([2,5,7,4], 11))
 若和小于 0, 说明 nums[L]太小，L 右移
 
 '''
+
+
 class Solution:
-    def threeSum(self, nums):
+    def threeSum0(self, nums: List[int]) -> List[List[int]]:
         n = len(nums)
-        res = []
-        if (not nums or n < 3):
-            return []
         nums.sort()
-        res = []
-        for i in range(n):
-            if (nums[i] > 0):
-                return res
-            if (i > 0 and nums[i] == nums[i - 1]):
+        ans = list()
+
+        # 枚举 a
+        for first in range(n):
+            # 需要和上一次枚举的数不相同
+            if first > 0 and nums[first] == nums[first - 1]:
                 continue
-            L = i + 1
-            R = n - 1
-            while (L < R):
-                if (nums[i] + nums[L] + nums[R] == 0):
-                    res.append([nums[i], nums[L], nums[R]])
-                    while (L < R and nums[L] == nums[L + 1]):
-                        L = L + 1
-                    while (L < R and nums[R] == nums[R - 1]):
-                        R = R - 1
-                    L = L + 1
-                    R = R - 1
-                elif (nums[i] + nums[L] + nums[R] > 0):
-                    R = R - 1
-                else:
-                    L = L + 1
-        return res
+            # c 对应的指针初始指向数组的最右端
+            third = n - 1
+            target = -nums[first]
+            # 枚举 b
+            for second in range(first + 1, n):
+                # 需要和上一次枚举的数不相同
+                if second > first + 1 and nums[second] == nums[second - 1]:
+                    continue
+                # 需要保证 b 的指针在 c 的指针的左侧
+                while second < third and nums[second] + nums[third] > target:
+                    third -= 1
+                # 如果指针重合，随着 b 后续的增加
+                # 就不会有满足 a+b+c=0 并且 b<c 的 c 了，可以退出循环
+                if second == third:
+                    break
+                if nums[second] + nums[third] == target:
+                    ans.append([nums[first], nums[second], nums[third]])
+
+        return ans
+
 
 x = Solution()
-print(x.threeSum([0,1,1,2,3,3]))
+print(x.threeSum0([0,1,1,2,3,3]))

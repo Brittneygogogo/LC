@@ -30,11 +30,13 @@ class Solution:
         if add == n:
             return head
 
+        #cur在最后一位 形成环
         cur.next = head
+        #add为正数k，倒数n - k的位置
         while add:
             cur = cur.next
             add -= 1
 
-        ret = cur.next
+        newhead = cur.next
         cur.next = None
-        return ret
+        return newhead
