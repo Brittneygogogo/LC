@@ -58,9 +58,10 @@ print(x.lengthOfLongestSubstring("abcabcbb"))
 
 '''
 滑动窗口模板
+https://leetcode.cn/problems/longest-substring-without-repeating-characters/
 '''
 class Solution:
-    def lengthOfLongestSubstring(self, s: str) -> int:
+    def lengthOfLongestSubstringtmpl(self, s: str) -> int:
         if not s:return 0
         left = 0
         lookup = set()
@@ -76,3 +77,4 @@ class Solution:
             if cur_len > max_len:max_len = cur_len
             lookup.add(s[i])
         return max_len
+

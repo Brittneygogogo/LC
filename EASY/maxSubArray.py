@@ -13,9 +13,6 @@ def maxSubArray(nums):
 
 
 
-# 注意：python 代码由 chatGPT🤖 根据我的 java 代码翻译，旨在帮助不同背景的读者理解算法逻辑。
-# 本代码已经通过力扣的测试用例，应该可直接成功提交。
-
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         n = len(nums)

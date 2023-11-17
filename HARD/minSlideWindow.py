@@ -2,7 +2,7 @@ import collections
 
 '''
 在S中寻找T子串
-
+https://leetcode.cn/problems/minimum-window-substring/solutions/258513/tong-su-qie-xiang-xi-de-miao-shu-hua-dong-chuang-k/?envType=study-plan-v2&envId=top-100-liked
 '''
 class Solution:
     def minWindow(self, s: str, t: str) -> str:

@@ -1,7 +1,8 @@
 '''
 删除倒序的第K个节点
-# p1 先走 k 步， 然后p2 = head，p1走到末尾，等于 p1 和 p2 同时走 n - k 步，p2为倒数第k个
-p1指向n + 1时，p2 现在指向第 n - k 个节点
+https://leetcode.cn/problems/remove-nth-node-from-end-of-list/solutions/450350/shan-chu-lian-biao-de-dao-shu-di-nge-jie-dian-b-61/?envType=study-plan-v2&envId=top-100-liked
+
+让 first 比 second 超前了 n 个节点，当first遍历到链表的末尾， second为倒数第n个节点
 '''
 # Definition for singly-linked list.
 class ListNode:

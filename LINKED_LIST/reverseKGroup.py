@@ -24,7 +24,7 @@ class ListNode:
         self.next = next
 
 class Solution:
-    # 翻转一个子链表，并且返回新的头与尾
+    # 翻转一个子链表，并且返回新的头
     def reversed(self, head: ListNode, tail: ListNode):
         pre = None
         cur = None
@@ -50,6 +50,7 @@ class Solution:
             tail = tail.next
 
         newhead = self.reversed(head, tail)
+        #反转后head 变为k个中末尾节点， tail变为新递归节点
         head.next = self.reverseKGroup(tail, k)
 
         return newhead
