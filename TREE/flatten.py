@@ -1,9 +1,8 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode:
+    def __init__(self, x, left, right):
+        self.val = x
+        self.left = None
+        self.right = None
 
 '''
 后序
@@ -47,3 +46,7 @@ class Solution:
             root = root.right
         return
 
+
+
+root = TreeNode(1, TreeNode(2, TreeNode(3, None, None), TreeNode(4, None, None)), TreeNode(5, None, 6))
+flatten(root)

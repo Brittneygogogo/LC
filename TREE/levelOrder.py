@@ -1,6 +1,5 @@
 import collections
 
-
 class TreeNode(object):
     def __init__(self, x):
         self.val = x
@@ -9,32 +8,26 @@ class TreeNode(object):
 
 class Solution:
     def levelOrder(self, root: TreeNode):
-        res = []
-        if not root:
-            return res
+        if root==None:  #若是空树则直接返回
+            return []
 
-        q = []
-        q.append(root)
-        # while 循环控制从上向下一层层遍历
-        while q:
-            sz = len(q)
-            # 记录这一层的节点值
-            level = []
-            # for 循环控制每一层从左向右遍历
-            for i in range(sz):
-                cur = q.pop(0)
-                level.append(cur.val)
-                if cur.left:
-                    q.append(cur.left)
-                if cur.right:
-                    q.append(cur.right)
-            res.append(level)
-        return res
+        queue = [root] #创建队列
+        ans = [] #储存结果列表
 
-# 注意：python 代码由 chatGPT🤖 根据我的 java 代码翻译，旨在帮助不同背景的读者理解算法逻辑。
-# 本代码已经通过力扣的测试用例，应该可直接成功提交。
+        while queue: #队列非空时
+            #上一层的所有节点值
+            ans.append([node.val for node in queue])
+            # 存储当前层的所有节点
+            ll = []
+            for node in queue:
+                if node.left:
+                    ll.append(node.left)
+                if node.right:
+                    ll.append(node.right)
+            queue=ll
+        return ans
 
-class Solution:
+
     def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         if not root: return []
         res, deque = [], collections.deque([root])
@@ -52,3 +45,14 @@ class Solution:
                     deque.append(node.right)
             res.append(list(tmp))
         return res
+
+root = TreeNode(4)
+root.left = TreeNode(2)
+root.right = TreeNode(6)
+root.left.left = TreeNode(3)
+root.left.right = TreeNode(5)
+root.right.right = TreeNode(7)
+
+
+x = Solution()
+print(x.levelOrder(root))

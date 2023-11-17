@@ -26,7 +26,7 @@ class Solution:
             self.maxSum = max(self.maxSum, priceNewpath)
 
             # 返回节点的最大贡献值
-            # 左右二选一∑
+            # 左右二选一
             return node.val + max(leftGain, rightGain)
 
         maxGain(root)

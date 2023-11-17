@@ -4,30 +4,30 @@ class TreeNode(object):
         self.left = None
         self.right = None
 
-'''
-回溯算法
-'''
-class Solution:
-    def maxDepth(self, root: TreeNode) -> int:
-        self.res = 0
-        self.traverse(root, 0)
-        return self.res
+# '''
+# 回溯算法
+# '''
+# class Solution:
+#     def maxDepth(self, root: TreeNode) -> int:
+#         self.res = 0
+#         self.traverse(root, 0)
+#         return self.res
+#
+#     # 遍历二叉树
+#     def traverse(self, root: TreeNode, depth: int) -> None:
+#         if not root:
+#             return
+#         # 前序遍历位置
+#         depth += 1
+#         # 遍历的过程中记录最大深度
+#         self.res = max(self.res, depth)
+#         self.traverse(root.left, depth)
+#         self.traverse(root.right, depth)
+#         # 后序遍历位置
+#         depth -= 1
 
-    # 遍历二叉树
-    def traverse(self, root: TreeNode, depth: int) -> None:
-        if not root:
-            return
-        # 前序遍历位置
-        depth += 1
-        # 遍历的过程中记录最大深度
-        self.res = max(self.res, depth)
-        self.traverse(root.left, depth)
-        self.traverse(root.right, depth)
-        # 后序遍历位置
-        depth -= 1
-
 '''
-动态规划
+
 '''
 class Solution:
     # 定义：输入一个节点，返回以该节点为根的二叉树的最大深度

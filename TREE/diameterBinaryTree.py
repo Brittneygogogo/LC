@@ -1,6 +1,6 @@
-# 注意：python 代码由 chatGPT🤖 根据我的 java 代码翻译，旨在帮助不同背景的读者理解算法逻辑。
-# 本代码已经通过力扣的测试用例，应该可直接成功提交。
-
+'''
+所以求直径（即求路径长度的最大值）等效于求路径经过节点数的最大值减一。
+'''
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -8,22 +8,39 @@ class TreeNode:
         self.right = None
 
 class Solution:
-    def __init__(self):
-        self.maxDiameter = 0
+    # def __init__(self):
+    #     self.maxDiameter = 0
+    #
+    # def diameterOfBinaryTree(self, root: TreeNode) -> int:
+    #     self.maxDepth(root)
+    #     return self.maxDiameter
+    #
+    # def maxDepth(self, root: TreeNode) -> int:
+    #     if not root:
+    #         return 0
+    #     leftMax = self.maxDepth(root.left)
+    #     rightMax = self.maxDepth(root.right)
+    #
+    #     self.maxDiameter = max(self.maxDiameter, leftMax + rightMax)
+    #     return 1 + max(leftMax, rightMax)
 
-    def diameterOfBinaryTree(self, root: TreeNode) -> int:
-        self.maxDepth(root)
-        return self.maxDiameter
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        self.ans = 0
+        def depth(node):
+            # 访问到空节点了，返回0
+            if not node:
+                return 0
+            # 左儿子为根的子树的深度
+            L = depth(node.left)
+            # 右儿子为根的子树的深度
+            R = depth(node.right)
+            # 计算d_node即L+R 并更新ans
+            self.ans = max(self.ans, L + R)
+            # 需比较，比如左子树有多条路径，需取最大
+            return max(L, R) + 1
 
-    def maxDepth(self, root: TreeNode) -> int:
-        if not root:
-            return 0
-        leftMax = self.maxDepth(root.left)
-        rightMax = self.maxDepth(root.right)
-        # 后序遍历位置顺便计算最大直径
-        self.maxDiameter = max(self.maxDiameter, leftMax + rightMax)
-        return 1 + max(leftMax, rightMax)
-
+        depth(root)
+        return self.ans
 
 
 x = Solution()
