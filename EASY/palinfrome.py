@@ -27,7 +27,7 @@ def palindrome(s, l, r):
     # 返回以 s[l] 和 s[r] 为中心的最长回文串
     print(l+1, r-1)
     # print(s[l + 1, r - 1])
-    return s[l + 1, r - l- 1]
+    return s[l + 1, r - l - 1]
 
 
 

@@ -1,8 +1,10 @@
-# def climbStairs(n):
-"""
-:type n: int
-:rtype: int
-"""
+'''
+青蛙跳台阶问题： f(0)=1f(0)=1f(0)=1 , f(1)=1f(1)=1f(1)=1 , f(2)=2f(2)=2f(2)=2 。
+斐波那契数列问题： f(0)=0f(0)=0f(0)=0 , f(1)=1f(1)=1f(1)=1 , f(2)=1f(2)=1f(2)=1 。
+
+2级台阶是0， 1， 2
+如n=2，dp需要n+1包括2
+'''
 
 class Solution:
     def climbStairs(self, n):
@@ -13,18 +15,6 @@ class Solution:
             dp[i] = dp[i - 1] + dp[i - 2]
 
         return dp[-1]
-
-# def climbStairs(n):
-#     p = 0
-#     q = 0
-#     r = 1
-#     i = 1
-#     while (i <= n):
-#         i += 1
-#         p = q
-#         q = r
-#         r = p + q
-#     return r
 
 x = Solution()
 

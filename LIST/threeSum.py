@@ -30,17 +30,6 @@ s = Solution()
 print(s.threesum([2,5,7,4], 11))
 
 
-def threesum(nums, target):
-    n = len(nums)
-    nums.sort()
-    ans = []
-    for first in range(n):
-        first = i
-        for sec in range(first +1, n):
-
-
-    return ans
-
 
 
 

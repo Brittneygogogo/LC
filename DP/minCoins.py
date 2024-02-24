@@ -1,57 +1,93 @@
 
-"""
-动态规划的核心问题是穷举。因为要求最值，肯定要把所有可行的答案穷举出来，然后在其中找最值呗。
+'''
+https://leetcode.cn/problems/coin-change/solutions/132979/322-ling-qian-dui-huan-by-leetcode-solution/?envType=study-plan-v2&envId=top-100-liked
+'''
 
-给你 k 种面值的硬币，面值分别为 c1, c2 ... ck，每种硬币的数量无限，再给一个总金额 amount，问你最少需要几枚硬币凑出这个金额，如果不可能凑出，算法返回 -1 。算法的函数签名如下：
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        dp = [float('inf')] * (amount + 1)
+        dp[0] = 0
 
-// coins 中是可选硬币面值，amount 是目标金额
-int coinChange(int[] coins, int amount);
-比如说 k = 3，面值分别为 1，2，5，总金额 amount = 11。那么最少需要 3 枚硬币凑出，即 11 = 5 + 5 + 1。
-
-你认为计算机应该如何解决这个问题？显然，就是把所有肯能的凑硬币方法都穷举出来，然后找找看最少需要多少枚硬币。
-
- 为啥 dp 数组初始化为 amount + 1 呢，因为凑成 amount 金额的硬 币数最多只可能等于 amount (全用1元面值的硬币)，所以初始化为
- amount + 1 就相当于初始化为正无穷，便于后续取最小值。
-
-每次遍历0-11的金钱数，每个金钱数再分别遍历每个coin，比较当前的coin数和+1哪个小，看能凑出来的最小coin数
-
-"""
-#自底向上
-#dp 数组的定义：当目标金额为 i 时，至少需要 dp[i] 枚硬币凑出
-
-def coinChange(coins, amount):
-    # dp = len(amount)+1
-    dp = list(range(12))
-    # dp[0] = 0
-    print(dp)
-    for i in range(len(dp)):
         for coin in coins:
-            if i -coin <0: continue
-            dp[i] = min(dp[i], 1 + dp[i-coin])
+            for x in range(coin, amount + 1):
+                dp[x] = min(dp[x], dp[x - coin] + 1)
+        return dp[amount] if dp[amount] != float('inf') else -1
 
-    # if dp[amount] == amount+1:
-    print(dp[amount])
+'''
+https://labuladong.gitee.io/algo/di-er-zhan-a01c6/dong-tai-g-a223e/dong-tai-g-1e688/
+'''
 
-    return -1
-    # return dp[amount]
-
-#自顶向下，暴力遍历，dp(n) 的定义：输入一个目标金额 n，返回凑出目标金额 n 的最少硬币数量。
-# 基础版，可加memo
-# def coinChange1(coins, amount):
-#     def dp(n):
-#         if n == 0: return 0
-#         if n < 0: return -1
+# class Solution:
+#     def coinChange(self, coins: List[int], amount: int) -> int:
+#         dp = [amount + 1] * (amount + 1)
+#         # 数组大小为 amount+1，初始值也为 amount+1
+#         dp[0] = 0
+#         # base case
+#         # 初始值为0
+#         # 外层 for 循环在遍历所有状态的所有取值
+#         for i in range(len(dp)):
+#             # 内层 for 循环在求所有选择的最小值
+#             for coin in coins:
+#                 # 子问题无解，跳过
+#                 if i - coin < 0:
+#                     continue
+#                 dp[i] = min(dp[i], 1 + dp[i - coin])
 #
-#         res = float('INF')
-#         for coin in coins:
-#             subproblem = dp(n - coin)
-#             # 子问题无解，跳过
-#             if subproblem == -1: continue
-#             res = min(res, 1 + subproblem)
-#         return res if res != float('INF') else -1
-#     return dp(amount)
-
+#                 # 如果结果是初始值，则表示没有找到解。
+#         return -1 if dp[amount] == amount + 1 else dp[amount]
 
 
 # print(coinChange([1,2,5], 11))
-print(coinChange1([1,2,5], 11))
+print(coinChange([1,2,5], 11))
+
+
+class Solution:
+    def maxCoins(self, nums) -> int:
+        n = len(nums)
+        rec = [[0] * (n + 2) for _ in range(n + 2)]
+        val = [1] + nums + [1]
+
+        for i in range(n - 1, -1, -1):
+            for j in range(i + 2, n + 2):
+                for k in range(i + 1, j):
+                    total = val[i] * val[k] * val[j]
+                    total += rec[i][k] + rec[k][j]
+                    rec[i][j] = max(rec[i][j], total)
+
+        return rec[0][n + 1]
+
+
+class Solution:
+    def maxCoins(self, nums) -> int:
+
+        #nums首尾添加1，方便处理边界情况
+        nums.insert(0,1)
+        nums.insert(len(nums),1)
+
+        store = [[0]*(len(nums)) for i in range(len(nums))]
+
+        def range_best(i,j):
+            m = 0
+            #k是(i,j)区间内最后一个被戳的气球
+            for k in range(i+1,j): #k取值在(i,j)开区间中
+                #以下都是开区间(i,k), (k,j)
+                left = store[i][k]
+                right = store[k][j]
+                a = left + nums[i]*nums[k]*nums[j] + right
+                if a > m:
+                    m = a
+            store[i][j] = m
+
+        #对每一个区间长度进行循环
+        for n in range(2,len(nums)): #区间长度 #长度从3开始，n从2开始
+            #开区间长度会从3一直到len(nums)
+            #因为这里取的是range，所以最后一个数字是len(nums)-1
+
+            #对于每一个区间长度，循环区间开头的i
+            for i in range(0,len(nums)-n): #i+n = len(nums)-1
+
+                #计算这个区间的最多金币
+                range_best(i,i+n)
+
+        return store[0][len(nums)-1]
+

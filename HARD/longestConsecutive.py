@@ -1,3 +1,11 @@
+
+'''
+给定一个未排序的整数数组 nums ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度。
+https://leetcode.cn/problems/longest-consecutive-sequence/solutions/276931/zui-chang-lian-xu-xu-lie-by-leetcode-solution/?utm_source=LCUS&utm_medium=ip_redirect&utm_campaign=transfer2china
+
+不要求序列元素在原数组中连续
+
+'''
 class Solution:
     def longestConsecutive(self, nums):
         longest_seq = 0
@@ -17,4 +25,5 @@ class Solution:
         return longest_seq
 
 x = Solution()
+#0 1 2 3
 print(x.longestConsecutive([3,7,2,5,10,6,0,1]))

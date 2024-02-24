@@ -5,6 +5,7 @@
 由于数组索引从 0 开始，有索引偏移
 二维矩阵 列数在里面, 行数在外面
 dp = [[0] * (n+1)] * (m+1)
+动态规划 如果不初始化basecase 容易取dp[-1],即上一行最后一个，不对了就
 
 '''
 def longestCommonSubsequence(s1, s2):
@@ -25,9 +26,11 @@ def longestCommonSubsequence(s1, s2):
             else:
                 dp[i][j] = max(dp[i][j - 1], dp[i - 1][j])
 
-    # return dp[m][n]
-    return s
+    return dp[-1][-1]
 
+    # return s
+
+x = Solution()
 
 # print(longestCommonSubsequence("abcde", "acfe"))
-print(longestCommonSubsequence("ace", "aced"))
+print(x.longestCommonSubsequence("ubmrapg", "ezupkr"))

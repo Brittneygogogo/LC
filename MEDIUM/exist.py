@@ -1,32 +1,27 @@
-class Solution:
-    def exist(self, board, word: str) -> bool:
-        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+'''
+https://leetcode.cn/problems/word-search/solutions/2361646/79-dan-ci-sou-suo-hui-su-qing-xi-tu-jie-5yui2/?envType=study-plan-v2&envId=top-100-liked
+'''
+from typing import List
 
-        def check(i: int, j: int, k: int) -> bool:
-            if board[i][j] != word[k]:
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def dfs(i, j, k):
+            if not 0 <= i < len(board) or not 0 <= j < len(board[0]) or board[i][j] != word[k]:
                 return False
             if k == len(word) - 1:
                 return True
+            #代表此元素已访问过，防止之后搜索时重复访问。
+            board[i][j] = ''
+            #代表只需找到一条可行路径就直接返回，不再做后续 DFS
+            res = dfs(i + 1, j, k + 1) or dfs(i - 1, j, k + 1) or dfs(i, j + 1, k + 1) or dfs(i, j - 1, k + 1)
+            #将 board[i][j] 元素还原至初始值，即 word[k]
+            board[i][j] = word[k]
+            return res
 
-            visited.add((i, j))
-            result = False
-            for di, dj in directions:
-                newi, newj = i + di, j + dj
-                if 0 <= newi < len(board) and 0 <= newj < len(board[0]):
-                    if (newi, newj) not in visited:
-                        if check(newi, newj, k + 1):
-                            result = True
-                            break
-
-            visited.remove((i, j))
-            return result
-
-        h, w = len(board), len(board[0])
-        visited = set()
-        for i in range(h):
-            for j in range(w):
-                if check(i, j, 0):
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if dfs(i, j, 0):
                     return True
-
         return False
 

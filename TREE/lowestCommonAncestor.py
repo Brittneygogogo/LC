@@ -8,7 +8,7 @@ class TreeNode:
 图
 https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/solutions/2023872/fen-lei-tao-lun-luan-ru-ma-yi-ge-shi-pin-2r95/?envType=study-plan-v2&envId=top-interview-150
 
-代码
+递归寻找p q节点，根据寻找情况判断
 
 '''
 class Solution:
@@ -18,10 +18,11 @@ class Solution:
         left = self.lowestCommonAncestor(root.left, p, q)
         right = self.lowestCommonAncestor(root.right, p, q)
         if not left and not right:
+            return None
+        if left and right:
             return root
-        if not left: return right
-        if not right: return left
-        return root
+        return right if not left else left
+
 
 x = Solution()
 print(x.lowestCommonAncestor(root))

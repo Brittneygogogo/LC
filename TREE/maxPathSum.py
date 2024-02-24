@@ -1,3 +1,8 @@
+'''
+https://leetcode.cn/problems/binary-tree-maximum-path-sum/solutions/297005/er-cha-shu-zhong-de-zui-da-lu-jing-he-by-leetcode-/?company_slug=bytedance
+
+迭代的返回取left或right其一的最大值
+'''
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -6,10 +11,9 @@ class TreeNode:
 
 
 class Solution:
-    def __init__(self):
-        self.maxSum = float("-inf")
 
     def maxPathSum(self, root: TreeNode) -> int:
+        self.maxSum = float("-inf")
         def maxGain(node):
             if not node:
                 return 0
@@ -32,3 +36,6 @@ class Solution:
         maxGain(root)
         return self.maxSum
 
+x = Solution()
+root = TreeNode(10, TreeNode(9, None, None), TreeNode(20, TreeNode(10, None, None), TreeNode(7, None, None)))
+print(x.maxPathSum(root))

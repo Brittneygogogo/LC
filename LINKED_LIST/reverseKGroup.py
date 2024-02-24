@@ -24,7 +24,9 @@ class ListNode:
         self.next = next
 
 class Solution:
-    # 翻转一个子链表，并且返回新的头
+    #1  2  3     4
+   #      pre head==tail
+    # 翻转一个子链表，并且返回新的头, 因为tail是k+1个,所以head==tail时已越界，反指的pre为新的头节点，原来的最后一个kth节点
     def reversed(self, head: ListNode, tail: ListNode):
         pre = None
         cur = None

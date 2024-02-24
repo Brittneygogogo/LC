@@ -17,3 +17,8 @@ class Solution(object):
 
 x = Solution()
 print(x.reverseStr("abcdefg", 2))
+
+
+
+
+

@@ -1,46 +1,77 @@
-class Trie:
+# class Trie:
+#
+#     def __init__(self):
+#         """
+#         Initialize your data structure here.
+#         """
+#         self.lookup = {}
+#
+#     def insert(self, word: str) -> None:
+#         """
+#         Inserts a word into the trie.
+#         """
+#         tree = self.lookup
+#         for a in word:
+#             if a not in tree:
+#                 tree[a] = {}
+#             tree = tree[a]
+#         # 单词结束标志
+#         tree["#"] = "#"
+#
+#     def search(self, word: str) -> bool:
+#         """
+#         Returns if the word is in the trie.
+#         """
+#         tree = self.lookup
+#         for a in word:
+#             if a not in tree:
+#                 return False
+#             tree = tree[a]
+#         if "#" in tree:
+#             return True
+#         return False
+#
+#     def startsWith(self, prefix: str) -> bool:
+#         """
+#         Returns if there is any word in the trie that starts with the given prefix.
+#         """
+#         tree = self.lookup
+#         for a in prefix:
+#             if a not in tree:
+#                 return False
+#             tree = tree[a]
+#         return True
 
+
+class Trie:
     def __init__(self):
-        """
-        Initialize your data structure here.
-        """
-        self.lookup = {}
+        self.children = [None] * 26
+        self.isEnd = False
+
+    def searchPrefix(self, prefix: str) -> "Trie":
+        node = self
+        for ch in prefix:
+            ch = ord(ch) - ord("a")
+            if not node.children[ch]:
+                return None
+            node = node.children[ch]
+        return node
 
     def insert(self, word: str) -> None:
-        """
-        Inserts a word into the trie.
-        """
-        tree = self.lookup
-        for a in word:
-            if a not in tree:
-                tree[a] = {}
-            tree = tree[a]
-        # 单词结束标志
-        tree["#"] = "#"
+        node = self
+        for ch in word:
+            ch = ord(ch) - ord("a")
+            if not node.children[ch]:
+                node.children[ch] = Trie()
+            node = node.children[ch]
+        node.isEnd = True
 
     def search(self, word: str) -> bool:
-        """
-        Returns if the word is in the trie.
-        """
-        tree = self.lookup
-        for a in word:
-            if a not in tree:
-                return False
-            tree = tree[a]
-        if "#" in tree:
-            return True
-        return False
+        node = self.searchPrefix(word)
+        return node is not None and node.isEnd
 
     def startsWith(self, prefix: str) -> bool:
-        """
-        Returns if there is any word in the trie that starts with the given prefix.
-        """
-        tree = self.lookup
-        for a in prefix:
-            if a not in tree:
-                return False
-            tree = tree[a]
-        return True
+        return self.searchPrefix(prefix) is not None
 
 
 '''
@@ -82,7 +113,7 @@ class Trie:
 '''
 x = Trie()
 x.insert("leetcode")
-x.insert("le")
+# x.insert("le")
 x.insert("leet")
-print(x.lookup)
-print(x.search("le"))
+# print(x.lookup)
+print(x.search("leet"))

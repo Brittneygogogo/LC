@@ -18,30 +18,30 @@ class Solution:
         for i in range(2, size):
             dp[i] = max(dp[i - 2] + nums[i], dp[i - 1])
 
-        return dp[size - 1]
+        return dp[-1]
 
 x = Solution()
 print(x.rob([1,2,3,1,3]))
 
-'''
-考虑到每间房屋的最高总金额只和该房屋的前两间房屋的最高总金额相关，因此可以使用滚动数组，在每个时刻只需要存储前两间房屋的最高总金额。
-滚动数组
-'''
-def rob1(nums) -> int:
-    if not nums:
-        return 0
-
-    size = len(nums)
-    if size == 1:
-        return nums[0]
-
-    first, second = nums[0], max(nums[0], nums[1])
-    for i in range(2, size):
-        first, second = second, max(first + nums[i], second)
-
-    return second
-
-print(rob1([1,2,3,1,3]))
+# '''
+# 考虑到每间房屋的最高总金额只和该房屋的前两间房屋的最高总金额相关，因此可以使用滚动数组，在每个时刻只需要存储前两间房屋的最高总金额。
+# 滚动数组
+# '''
+# def rob1(nums) -> int:
+#     if not nums:
+#         return 0
+#
+#     size = len(nums)
+#     if size == 1:
+#         return nums[0]
+#
+#     first, second = nums[0], max(nums[0], nums[1])
+#     for i in range(2, size):
+#         first, second = second, max(first + nums[i], second)
+#
+#     return second
+#
+# print(rob1([1,2,3,1,3]))
 
 '''
 环：
@@ -49,8 +49,13 @@ print(rob1([1,2,3,1,3]))
 在不偷窃第一个房子的情况下（即 nums[1:]），最大金额是 p1 
 1 在不偷窃最后一个房子的情况下（即 nums[:n-1]），最大金额是 p2
 2 综合偷窃最大金额： 为以上两种情况的较大值，即 max(p1,p2) 。
+dp[n] 只与 dp[n−1]  和 dp[n−2]  有关系，因此我们可以设两个变量 cur和 pre 交替记录，将空间复杂度降到 O(1)
 
+
+https://leetcode.cn/problems/house-robber-ii/solutions/28258/213-da-jia-jie-she-iidong-tai-gui-hua-jie-gou-hua-/
 '''
+
+
 def rob3(nums:[int]) -> int:
     def my_rob(nums):
         cur, pre = 0, 0
@@ -60,25 +65,6 @@ def rob3(nums:[int]) -> int:
     return max(my_rob(nums[:-1]), my_rob(nums[1:])) if len(nums) != 1 else nums[0]
 
 print(rob3([1,2,3,1,5]))
-#
-# def rob3(nums) -> int:
-#     if not nums:
-#         return 0
-#
-#     size = len(nums)
-#     if size == 1:
-#         return nums[0]
-#
-#     dp = [0] * size
-#     dp[0] = nums[0]
-#     dp[1] = max(nums[0], nums[1])
-#     for i in range(2, size):
-#         dp[i] = max(dp[i - 2] + nums[i], dp[i - 1])
-#
-#     return dp[size - 1]
-#
-# x = [1,2,3,1,5]
-# print(max(rob3(x[1:]), rob3(x[:-1])))
 
 '''
 路径是二叉树

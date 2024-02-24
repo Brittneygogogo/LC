@@ -3,6 +3,31 @@
 
 
 '''
+
+#按长度奇偶来 双指针中心扩展
+
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        if len(s) == 1:
+            return s
+        n = len(s)
+
+        d, m = divmod(n, 2)
+        if m == 1:
+            p1 = p2 = d
+        else:
+            p1 = d - 1
+            p2 = d
+        ans = ''
+        while p1 >= 0 and p2 < n:
+            if s[p1] == s[p2]:
+                if len(ans) < p2 - p1:
+                    ans = s[p1:p2 + 1]
+            p1 -= 1
+            p2 += 1
+        return ans
+
+
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         n = len(s)
@@ -26,7 +51,7 @@ class Solution:
                     ans = s[i:j+1]
         return ans
 
-'''
+
 class Solution:
     def expandAroundCenter(self, s, left, right):
         while left >= 0 and right < len(s) and s[left] == s[right]:
@@ -46,6 +71,5 @@ class Solution:
         return s[start: end + 1]
 
 
-'''
 x = Solution()
 print(x.longestPalindrome("babad"))
